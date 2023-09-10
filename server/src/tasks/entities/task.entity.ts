@@ -21,7 +21,7 @@ export class Task {
   @Column({ type: 'date' })
   dateEnd: string;
 
-  @OneToOne(() => Category)
+  @OneToOne(() => Category, (category) => category.id)
   @JoinColumn()
   taskId: number;
 }

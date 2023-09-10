@@ -18,7 +18,7 @@ export class Category {
   @Column({ type: 'timestamp' })
   dateCreated: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, (user) => user.id)
   @JoinColumn()
   userId: number;
 }
