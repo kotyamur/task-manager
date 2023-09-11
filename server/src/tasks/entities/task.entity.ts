@@ -1,27 +1,43 @@
 import { Category } from 'src/categories/entities/category.entity';
+import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToOne,
+  // OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column({ type: 'varchar' })
-  name: string;
+  name: string
 
   @Column({ type: 'date' })
-  dateStart: string;
+  dateStart: Date
 
   @Column({ type: 'date' })
-  dateEnd: string;
+  dateEnd: Date
 
-  @OneToOne(() => Category, (category) => category.id)
-  @JoinColumn()
-  taskId: number;
+  // @OneToOne(() => Category, (category) => category.id, { onDelete: 'CASCADE' })
+  // @JoinColumn({ name: 'taskId' })
+  // // taskId: number
+  // category: Category
+
+  @ManyToOne(() => User, (user) => user.tasks, {
+    onDelete: 'CASCADE',
+    eager: false,
+  })
+  @JoinColumn({ name: 'userId' })
+  user_id: User
+
+  @ManyToOne(() => Category, (category) => category.tasks, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'taskId' })
+  category_id: Category
 }

@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from 'src/categories/entities/category.entity';
+import { Task } from 'src/tasks/entities/task.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  // OneToOne,
+} from 'typeorm'
 
 export enum UserRole {
   EDITOR = 'editor',
@@ -8,18 +16,31 @@ export enum UserRole {
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column({ type: 'varchar' })
-  email: string;
+  email: string
 
   @Column({ type: 'varchar' })
-  password: string;
+  password: string
 
   @Column({
     type: 'enum',
     enum: UserRole,
     default: UserRole.GUEST,
   })
-  role: UserRole;
+  role: UserRole
+
+  // @OneToOne(() => Category, (category) => category.user)
+  // category: Category
+
+  @OneToMany(() => Category, (category) => category.owner, {
+    onDelete: 'CASCADE',
+  })
+  categories: Category[]
+
+  @OneToMany(() => Task, (task) => task.user_id, {
+    onDelete: 'CASCADE',
+  })
+  tasks: Task[]
 }
