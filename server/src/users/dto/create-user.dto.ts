@@ -5,10 +5,10 @@ export class CreateUserDto {
   email: string
 
   @MinLength(6, {
-    message: 'Password is too short',
+    message: 'Password must be longer than or equal to 6 symbols',
   })
   @MaxLength(10, {
-    message: 'Password is too long',
+    message: 'Password is too long. Maximal length is 10 symbols',
   })
   password: string
 }

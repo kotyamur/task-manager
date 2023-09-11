@@ -2,11 +2,11 @@ import { IsString, IsDate } from 'class-validator'
 
 export class CreateTaskDto {
   @IsString()
-  name: string
+  name: string;
 
   @IsDate()
-  dateStart: Date
+  dateStart: Date;
 
   @IsDate()
-  dateEnd: Date
+  dateEnd: Date;
 }
