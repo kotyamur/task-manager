@@ -3,8 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import * as argon2 from 'argon2'
-// import { UpdateUserDto } from './dto/update-user.dto';
+import * as argon2 from 'argon2';
 
 @Injectable()
 export class UsersService {
@@ -27,20 +26,14 @@ export class UsersService {
   }
 
   findAll() {
-    return this.usersRepository.find()
+    return this.usersRepository.find();
   }
 
-  async findOne(id: number) {
-    const userById = await this.usersRepository.findOneBy({ id })
-
-    return `This action returns a #${id} user ${userById.email}`
+  async findOne(email: string) {
+    return await this.usersRepository.findOne({
+      where: {
+        email,
+      }
+    })
   }
-
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} user`;
-  // }
 }
