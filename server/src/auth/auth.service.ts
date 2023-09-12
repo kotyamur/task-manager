@@ -8,7 +8,7 @@ import { IUser } from 'src/types/types';
 export class AuthService {
   constructor(
     private usersService: UsersService,
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
   ) {}
 
   async validateUser(email: string, password: string): Promise<any> {
