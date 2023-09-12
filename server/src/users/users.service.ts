@@ -14,15 +14,15 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     const existUser = await this.usersRepository.findOne({
       where: { email: createUserDto.email },
-    })
+    });
     if (existUser) {
-      throw new BadRequestException('This email already exist!')
+      throw new BadRequestException('This email already exist!');
     }
     const user = await this.usersRepository.save({
       email: createUserDto.email,
       password: await argon2.hash(createUserDto.password),
-    })
-    return { user }
+    });
+    return { user };
   }
 
   findAll() {
@@ -33,7 +33,7 @@ export class UsersService {
     return await this.usersRepository.findOne({
       where: {
         email,
-      }
-    })
+      },
+    });
   }
 }
