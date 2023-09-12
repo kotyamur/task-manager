@@ -64,14 +64,14 @@ export class CategoriesService {
 		return await this.categoryRepository.update(id, updateCategoryDto)
 	}
 
-  async remove(id: number) {
-    const category = await this.categoryRepository.findOne({
+	async remove(id: number) {
+		const category = await this.categoryRepository.findOne({
 			where: { id },
 		})
 		if (!category) {
 			throw new NotFoundException('Category not found!')
-    }
-    
-    return await this.categoryRepository.delete(id);
+		}
+
+		return await this.categoryRepository.delete(id)
 	}
 }
