@@ -31,10 +31,10 @@ export class User {
   })
   role: UserRole
 
-  // @OneToOne(() => Category, (category) => category.user)
+  // @OneToOne(() => Category, (category) => category.owner)
   // category: Category
 
-  @OneToMany(() => Category, (category) => category.owner, {
+  @OneToMany(() => Category, (category) => category.user, {
     onDelete: 'CASCADE',
   })
   categories: Category[]

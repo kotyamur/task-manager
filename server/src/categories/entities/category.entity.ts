@@ -22,17 +22,17 @@ export class Category {
   @CreateDateColumn()
   dateCreated: Date
 
-//   @OneToOne(() => User, (user) => user.id)
-//   @JoinColumn({ name: 'userId' })
-//   //   userId: number
-//   user: User
+  //   @OneToOne(() => User, (user) => user.id)
+  //   @JoinColumn({ name: 'userId' })
+  //   //   userId: number
+  //   owner: User
 
   @ManyToOne(() => User, (user) => user.categories, {
     eager: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'userId' })
-  owner: User
+  user: User
 
   @OneToMany(() => Task, (task) => task.category_id, {
     eager: false,

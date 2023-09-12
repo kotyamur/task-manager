@@ -1,5 +1,9 @@
-import { IsString } from 'class-validator'
+import { IsNotEmpty, IsOptional } from 'class-validator'
+import { User } from 'src/users/entities/user.entity';
 export class CreateCategoryDto {
-  @IsString()
+  @IsNotEmpty()
   name: string;
+
+  @IsOptional()
+  user: User
 }
