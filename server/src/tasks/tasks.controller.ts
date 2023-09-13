@@ -21,16 +21,16 @@ export class TasksController {
 	constructor(private readonly tasksService: TasksService) {}
 
 	@Post()
-	@UseGuards(JwtAuthGuard)
 	@UsePipes(new ValidationPipe())
+	@UseGuards(JwtAuthGuard)
 	create(@Body() createTaskDto: CreateTaskDto, @Req() req) {
 		return this.tasksService.create(createTaskDto, +req.user.id)
 	}
 
 	@Get()
 	@UseGuards(JwtAuthGuard)
-	findAll(@Body() category, @Req() req) {
-		return this.tasksService.findAll(category, +req.user.id)
+	findAll(@Req() req) {
+		return this.tasksService.findAll(+req.user.id)
 	}
 
 	@Get(':id')

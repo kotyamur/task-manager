@@ -17,43 +17,35 @@ export class TasksService {
 	) {}
 
 	async create(createTaskDto: CreateTaskDto, id: number) {
-		const isExist = await this.taskRepository.findBy({
-			user_id: { id },
-			name: createTaskDto.name,
-		})
-		if (isExist.length) {
-			throw new BadRequestException('This task already exist!')
-		}
 		const newTask = {
 			name: createTaskDto.name,
 			dateStart: createTaskDto.dateStart,
 			dateEnd: createTaskDto.dateEnd,
-			user_id: {
-				id,
-			},
+			user_id: { id },
+			category_id: { id: +createTaskDto.category_id },
+		}
+
+		if (!newTask) {
+			throw new BadRequestException('Something went wrong...')
 		}
 		return await this.taskRepository.save(newTask)
 	}
 
-	async findAll(category, id: number) {
-		return await this.taskRepository.find({
+	async findAll(id: number) {
+		const tasks = await this.taskRepository.find({
 			where: {
 				user_id: { id },
-				category_id: category,
 			},
-			// relations: {
-			// 	tasks: true,
-			// },
+			order: {
+				dateEnd: 'ASC',
+			},
 		})
+		return tasks
 	}
 
 	async findOne(id: number) {
 		const task = await this.taskRepository.findOne({
 			where: { id },
-			// relations: {
-			// 	user: true,
-			// 	tasks: true,
-			// },
 		})
 		if (!task) {
 			throw new NotFoundException('Task not found!')
@@ -68,7 +60,10 @@ export class TasksService {
 		if (!task) {
 			throw new NotFoundException('Task not found!')
 		}
-		return await this.taskRepository.update(id, updateTaskDto)
+		await this.taskRepository.update(id, updateTaskDto)
+		return await this.taskRepository.findOne({
+			where: { id },
+		})
 	}
 
 	async remove(id: number) {
@@ -79,6 +74,8 @@ export class TasksService {
 			throw new NotFoundException('Task not found!')
 		}
 
-		return await this.taskRepository.delete(id)
+		await this.taskRepository.delete(id)
+
+		return { message: 'Task has been deleted' }
 	}
 }

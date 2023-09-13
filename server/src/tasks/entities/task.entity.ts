@@ -11,7 +11,7 @@ import {
 
 @Entity()
 export class Task {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn({ type: 'int' })
 	id: number
 
 	@Column({ type: 'varchar' })

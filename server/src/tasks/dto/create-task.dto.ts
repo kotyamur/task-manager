@@ -1,13 +1,23 @@
-import { IsString, IsDate, IsNotEmpty } from 'class-validator'
+import { IsString, IsNotEmpty, IsOptional, IsDateString } from 'class-validator'
+import { Category } from 'src/categories/entities/category.entity'
+import { User } from 'src/users/entities/user.entity'
 
 export class CreateTaskDto {
 	@IsNotEmpty()
 	@IsString()
 	name: string
 
-	@IsDate()
-	dateStart: Date
+	@IsNotEmpty()
+	@IsDateString()
+	dateStart: string
 
-	@IsDate()
-	dateEnd: Date
+	@IsNotEmpty()
+	@IsDateString()
+	dateEnd: string
+
+	@IsNotEmpty()
+	category_id: Category
+
+	@IsOptional()
+	user_id: User
 }
