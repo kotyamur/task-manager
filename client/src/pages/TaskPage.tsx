@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-const Task: FC = () => {
+const TaskPage: FC = () => {
   return <div>Task</div>;
 };
 
-export default Task;
+export default TaskPage;

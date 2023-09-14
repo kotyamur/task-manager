@@ -1,22 +1,35 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Categories from "../pages/Categories";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
-import Tasks from "../pages/Tasks";
-import Task from "../pages/Task";
-import ErrorPage from "../pages/ErrorPage";
+import { SharedLayout } from "../components/SharedLayout";
+// import Categories from "../pages/Categories";
+// import Register from "../pages/RegisterPage";
+// import Login from "../pages/LoginPage";
+// import Tasks from "../pages/TasksPage";
+// import Task from "../pages/TaskPage";
+// import ErrorPage from "../pages/ErrorPage";
+// import Home from "../pages/HomePage";
+
+const Home = lazy(() => import("../pages/HomePage"));
+const Register = lazy(() => import("../pages/RegisterPage"));
+const Login = lazy(() => import("../pages/LoginPage"));
+const Categories = lazy(() => import("../pages/CategoriesPage"));
+const Tasks = lazy(() => import("../pages/TasksPage"));
+const Task = lazy(() => import("../pages/TaskPage"));
+const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 
 const AppRouter: React.FC = () => {
   return (
-      <Routes>
-        <Route path="/" element={<Categories />} />
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task" element={<Task />} />
-        <Route path="/*" element={<ErrorPage />} />
-      </Routes>
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
+    </Routes>
   );
 };
 

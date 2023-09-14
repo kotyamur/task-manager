@@ -13,7 +13,7 @@ import {
 
 export const SharedLayout: FC = () => {
   return (
-    <div>
+    <Box sx={{ paddingTop: '106px'}}>
       <AppBar>
         <Container maxWidth="xl">
           <Typography
@@ -49,7 +49,7 @@ export const SharedLayout: FC = () => {
                 Task
               </Button>
             </Box>
-            <Box display={"flex"} mr={3}>
+            {/* <Box sx={{ mr: 3, display: "flex" }}>
               <Button
                 color="inherit"
                 variant="outlined"
@@ -66,13 +66,13 @@ export const SharedLayout: FC = () => {
               >
                 Sign up
               </Button>
-            </Box>
+            </Box> */}
           </Toolbar>
         </Container>
       </AppBar>
       <Suspense fallback={<div>...loading</div>}>
         <Outlet />
       </Suspense>
-    </div>
+    </Box>
   );
 };

@@ -1,13 +1,12 @@
 import { FC } from "react";
-import { SharedLayout } from "./components/SharedLayout";
 import AppRouter from "./router/router";
+import Container from "@mui/material/Container";
 
 const App: FC = () => {
   return (
-    <div>
-      <SharedLayout />
-      <AppRouter />
-    </div>
+      <Container>
+        <AppRouter />
+      </Container>
   );
 };
 
