@@ -9,7 +9,10 @@ import CategoryDeletePopup from "../CategoryDeletePopup/CategoryDeletePopup";
 import CategoryEditPopup from "../CategoryEditPopup/CategoryEditPopup";
 import { categoryActionsStyles } from "./categoryActionsStyles";
 
-const CategoryActions: React.FC = () => {
+const CategoryActions: React.FC<{
+  categoryId: number | null;
+  handleActionsClose: () => void;
+}> = ({ handleActionsClose }) => {
   const [openDeletePopup, setOpenDeletePopup] = React.useState(false);
   const [openEditPopup, setOpenEditPopup] = React.useState(false);
   const handleEditActionClick = () => {
@@ -20,19 +23,21 @@ const CategoryActions: React.FC = () => {
   };
   const handleCloseEditPopup = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (event.target === event.currentTarget) {
-    //   event.stopPropagation();
+      //   event.stopPropagation();
       setOpenEditPopup(false);
+      handleActionsClose();
     }
   };
   const handleCloseDeletePopup = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     if (event.target === event.currentTarget) {
-    //   event.stopPropagation();
+      //   event.stopPropagation();
       setOpenDeletePopup(false);
+      handleActionsClose();
     }
   };
-    
+
   return (
     <Box sx={categoryActionsStyles.ulWrapper}>
       <List>

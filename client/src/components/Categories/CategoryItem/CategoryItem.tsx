@@ -16,6 +16,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 const CategoryItem: React.FC<{ it: number }> = ({ it }) => {
   const [isActionsShown, setIsActionsShown] = React.useState<boolean>(false);
   const [categoryId, setCategoryId] = React.useState<number | null>(null);
+
   const handleActionsClick = (
     //   event: React.MouseEvent<HTMLButtonElement>,
     it: number
@@ -24,6 +25,10 @@ const CategoryItem: React.FC<{ it: number }> = ({ it }) => {
     //   event.stopPropagation();
     setIsActionsShown(true);
     setCategoryId(it);
+  };
+
+  const handleActionsClose = () => {
+    setIsActionsShown(false);
   };
   return (
     <ListItem>
@@ -38,7 +43,9 @@ const CategoryItem: React.FC<{ it: number }> = ({ it }) => {
             actions
           </Button>
           <Button size="small">more </Button>
-          {isActionsShown && <CategoryActions />}
+          {isActionsShown && (
+            <CategoryActions categoryId={categoryId} handleActionsClose={handleActionsClose} />
+          )}
         </Box>
       </DemoPaper>
     </ListItem>
