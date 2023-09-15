@@ -6,7 +6,7 @@ const CategoryList: FC = () => {
   return (
     <List>
       {[0, 1, 2, 3, 4].map((it) => {
-        return <CategoryItem key={it} />;
+        return <CategoryItem key={it} it={it} />;
       })}
     </List>
   );

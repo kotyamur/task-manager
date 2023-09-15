@@ -11,7 +11,7 @@ const TasksList: FC = () => {
       columns={{ xs: 4, sm: 8, md: 12 }} component={List}
     >
       {[0, 1, 2, 3, 4].map((it) => {
-        return <TaskItem key={it} />;
+          return <TaskItem key={it} it={it} />;
       })}
     </Grid>
   );

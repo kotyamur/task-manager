@@ -13,7 +13,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const CategoryItem: React.FC<{ key: number }> = ({ key }) => {
+const CategoryItem: React.FC<{ it: number }> = ({ it }) => {
   const [isActionsShown, setIsActionsShown] = React.useState<boolean>(false);
   const [categoryId, setCategoryId] = React.useState<number | null>(null);
   const handleActionsClick = (
@@ -24,7 +24,6 @@ const CategoryItem: React.FC<{ key: number }> = ({ key }) => {
     //   event.stopPropagation();
     setIsActionsShown(true);
     setCategoryId(it);
-    console.log("Клікнуто дитячий компонент");
   };
   return (
     <ListItem>
@@ -35,11 +34,11 @@ const CategoryItem: React.FC<{ key: number }> = ({ key }) => {
           <Typography variant="h6">Date</Typography>
         </Box>
         <Box sx={categoryItemStyles.buttonsWrapper}>
-          <Button size="small" onClick={() => handleActionsClick(key)}>
+          <Button size="small" onClick={() => handleActionsClick(it)}>
             actions
           </Button>
           <Button size="small">more </Button>
-          {isActionsShown && key === categoryId && <CategoryActions />}
+          {isActionsShown && <CategoryActions />}
         </Box>
       </DemoPaper>
     </ListItem>
