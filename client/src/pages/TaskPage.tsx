@@ -1,7 +1,8 @@
 import { FC } from "react";
+import Task from "../components/Task/Task";
 
 const TaskPage: FC = () => {
-  return <div>Task</div>;
+  return <Task />;
 };
 
 export default TaskPage;

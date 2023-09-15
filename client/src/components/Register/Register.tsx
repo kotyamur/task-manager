@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const Register: React.FC = () => {
-    const [name, setName] = React.useState("");
+    const [email, setEmail] = React.useState("");
     
     const [password, setPassword] = React.useState("");
     return (
@@ -40,9 +40,9 @@ const Register: React.FC = () => {
           </Typography>
           <TextField
             label="Email:"
-            value={name}
+            value={email}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setName(event.target.value);
+              setEmail(event.target.value);
             }}
           />
 

@@ -31,7 +31,7 @@ const TaskItem: React.FC<{ it: number }> = ({ it }) => {
     }
   };
   return (
-    <Grid item xs={2} sm={4} md={4} key={it} component={ListItem}>
+    <Grid item xs={4} sm={4} md={4} key={it} component={ListItem}>
       <DemoPaper variant="outlined" sx={taskItemStyles.paper}>
         <Box sx={taskItemStyles.textWrapper}>
           <Typography variant="h6">Fix phone input field</Typography>
