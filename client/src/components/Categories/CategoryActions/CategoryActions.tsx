@@ -1,37 +1,64 @@
-import { FC } from "react";
+import * as React from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 
+import CategoryDeletePopup from "../CategoryDeletePopup/CategoryDeletePopup";
+import CategoryEditPopup from "../CategoryEditPopup/CategoryEditPopup";
+import { categoryActionsStyles } from "./CategoryActionsStyles";
 
-const CategoryActions: FC = () => {
+const CategoryActions: React.FC = () => {
+  const [openDeletePopup, setOpenDeletePopup] = React.useState(false);
+  const [openEditPopup, setOpenEditPopup] = React.useState(false);
+  const handleEditActionClick = () => {
+    setOpenEditPopup(true);
+  };
+  const handleDeleteActionClick = () => {
+    setOpenDeletePopup(true);
+  };
+  const handleCloseEditPopup = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (event.target === event.currentTarget) {
+    //   event.stopPropagation();
+      setOpenEditPopup(false);
+    }
+  };
+  const handleCloseDeletePopup = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    if (event.target === event.currentTarget) {
+    //   event.stopPropagation();
+      setOpenDeletePopup(false);
+    }
+  };
+    
   return (
-    <Box
-      sx={{
-        width: 124,
-        height: 112,
-        bgcolor: "background.paper",
-        zIndex: 2,
-        position: "absolute",
-        top: 56,
-        boxShadow:
-          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-      }}
-    >
+    <Box sx={categoryActionsStyles.ulWrapper}>
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleEditActionClick}>
             <ListItemText primary="Edit" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleDeleteActionClick}>
             <ListItemText primary="Delete" />
           </ListItemButton>
         </ListItem>
       </List>
+      {openDeletePopup && (
+        <CategoryDeletePopup
+          open={openDeletePopup}
+          handleClose={handleCloseDeletePopup}
+        />
+      )}
+      {openEditPopup && (
+        <CategoryEditPopup
+          open={openEditPopup}
+          handleClose={handleCloseEditPopup}
+        />
+      )}
     </Box>
   );
 };

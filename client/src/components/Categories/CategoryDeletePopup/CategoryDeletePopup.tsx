@@ -2,25 +2,41 @@ import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-const CategoryDeletePopup: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-//   const handleOpen = () => {
-//     setOpen(true);
-//   };
+const CategoryDeletePopup: React.FC<{
+  open: boolean;
+  handleClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}> = ({ open, handleClose }) => {
   return (
     <Backdrop
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={open}
       onClick={handleClose}
     >
-      <Box sx={{ p: 2, textAlign: "end", width: 300, height: 300 }}>
-        <Button variant="contained" sx={{ marginBottom: 4, marginRight: 2 }}>
-          Delete
-        </Button>
+      <Box
+        sx={{
+          backgroundColor: "#fff",
+          p: 4,
+          textAlign: "center",
+          width: 280,
+          height: 120,
+        }}
+      >
+        <Typography
+          variant="body1"
+          gutterBottom
+          mb={7}
+          sx={{ color: "primary.dark" }}
+        >
+          Do you want delete this category ?
+        </Typography>
+        <Box sx={{ display: "flex", gap: 4, justifyContent: "center" }}>
+          <Button variant="outlined" onClick={handleClose}>
+            no
+          </Button>
+          <Button variant="contained">yes</Button>
+        </Box>
       </Box>
     </Backdrop>
   );
