@@ -5,7 +5,9 @@ import CategoryItem from "../CategoryItem/CategoryItem";
 const CategoryList: FC = () => {
   return (
     <List>
-      <CategoryItem />
+      {[0, 1, 2, 3, 4].map((it) => {
+        return <CategoryItem key={it} />;
+      })}
     </List>
   );
 };

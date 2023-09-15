@@ -1,7 +1,8 @@
 import { FC } from "react";
+import Tasks from "../components/Tasks/Tasks";
 
 const TasksPage: FC = () => {
-  return <div>Tasks one category list</div>;
+  return <Tasks />;
 };
 
 export default TasksPage;

@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 
 import CategoryDeletePopup from "../CategoryDeletePopup/CategoryDeletePopup";
 import CategoryEditPopup from "../CategoryEditPopup/CategoryEditPopup";
-import { categoryActionsStyles } from "./CategoryActionsStyles";
+import { categoryActionsStyles } from "./categoryActionsStyles";
 
 const CategoryActions: React.FC = () => {
   const [openDeletePopup, setOpenDeletePopup] = React.useState(false);
