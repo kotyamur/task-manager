@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { formatISO } from "date-fns";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -11,11 +11,14 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const Task: React.FC = () => {
-    const [name, setName] = React.useState("");
+  const [name, setName] = React.useState("");
     const [description, setDescription] = React.useState("");
-    const [startDate, setStartDate] = React.useState<dateFns | null>(null);
-    const [endDate, setEndDate] = React.useState<dateFns | null>(null);
-    console.log(startDate, endDate);
+  const [startDate, setStartDate] = React.useState<dateFns | null>(null);
+  const [endDate, setEndDate] = React.useState<dateFns | null>(null);
+  console.log(startDate, endDate);
+    if (startDate instanceof Date) {
+      console.log(formatISO(startDate));
+    };
 
   return (
     <Box
@@ -76,7 +79,6 @@ const Task: React.FC = () => {
               }}
               value={startDate}
               onChange={(newValue) => setStartDate(newValue)}
-              //   defaultValue={format(new Date())}
             />
           </LocalizationProvider>
         </Box>
@@ -100,7 +102,6 @@ const Task: React.FC = () => {
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
               minDate={startDate}
-              //   defaultValue={format(new Date())}
             />
           </LocalizationProvider>
         </Box>
