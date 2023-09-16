@@ -18,4 +18,10 @@ export class AuthController {
 	getProfile(@Request() req) {
 		return req.user
 	}
+
+	@UseGuards(JwtAuthGuard)
+	@Post('logout')
+	async logout(@Request() req) {
+		return req.user
+	}
 }

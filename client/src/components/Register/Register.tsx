@@ -1,14 +1,23 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { register } from "../../redux/user/authOperations";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const Register: React.FC = () => {
-    const [email, setEmail] = React.useState("");
-    
-    const [password, setPassword] = React.useState("");
+  const dispatch = useAppDispatch();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    console.log(email, password);
+    dispatch(register({ email, password }));
+  };
+
     return (
       <Box
         sx={{
@@ -29,6 +38,7 @@ const Register: React.FC = () => {
           }}
           noValidate
           autoComplete="off"
+          onSubmit={handleSubmit}
         >
           <Typography
             variant="h5"
@@ -59,9 +69,7 @@ const Register: React.FC = () => {
             sx={{ display: "flex", gap: 6, justifyContent: "center", mt: 3 }}
           >
             <Button
-              variant="contained"
-              component={Link}
-              to="/register"
+              variant="contained" type="submit"
             >
               Sign up
             </Button>
