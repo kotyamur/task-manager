@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { useFormik, FormikHelpers } from "formik";
+
 import { useAppDispatch } from "../../redux/hooks";
 import { register } from "../../redux/user/authOperations";
 import Box from "@mui/material/Box";
@@ -7,16 +9,31 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+import { registerLoginSchema } from "../../helpers/validation";
+import { IRegisterLoginUserData } from "../../types/types";
+
+const initialRegisterValues: IRegisterLoginUserData = {
+  email: "",
+  password: "",
+};
+
 const Register: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    console.log(email, password);
-    dispatch(register({ email, password }));
+
+  const handleSubmit = async (
+    values: IRegisterLoginUserData,
+    { setSubmitting }: FormikHelpers<IRegisterLoginUserData>
+  ) => {
+    console.log(values.email, values.password);
+    await dispatch(register({ email: values.email, password: values.password }));
+    setSubmitting(false);
   };
+
+  const formik = useFormik({
+    initialValues: initialRegisterValues,
+    validationSchema: registerLoginSchema,
+    onSubmit: handleSubmit,
+  });
 
     return (
       <Box
@@ -38,7 +55,7 @@ const Register: React.FC = () => {
           }}
           noValidate
           autoComplete="off"
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
         >
           <Typography
             variant="h5"
@@ -50,34 +67,33 @@ const Register: React.FC = () => {
           </Typography>
           <TextField
             label="Email:"
-            value={email}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setEmail(event.target.value);
-            }}
+            id="email"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
 
           <TextField
-            //   error
             label="Password"
-            value={password}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setPassword(event.target.value);
-            }}
-            //   helperText="Incorrect entry."
+            id="password"
+            name="password"
+            type="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
           <Box
             sx={{ display: "flex", gap: 6, justifyContent: "center", mt: 3 }}
           >
-            <Button
-              variant="contained" type="submit"
-            >
+            <Button variant="contained" type="submit" disabled={formik.isSubmitting}>
               Sign up
             </Button>
-            <Button
-              variant="outlined"
-              component={Link}
-              to="/login"
-            >
+            <Button variant="outlined" component={Link} to="/login">
               Log In
             </Button>
           </Box>
