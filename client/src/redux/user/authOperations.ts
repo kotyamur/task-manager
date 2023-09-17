@@ -4,8 +4,8 @@ import { IRegisterLoginUserData, IResponseUserData } from "../../types/types";
 
 axios.defaults.baseURL = "http://localhost:4000/api/";
 
-const setAuthHeader = (token: string) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+const setAuthHeader = (access_token: string) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
 };
 
 const clearAuthHeader = () => {
@@ -43,7 +43,7 @@ export const logIn = createAsyncThunk(
   async (credentials: IRegisterLoginUserData, thunkAPI) => {
     try {
       const res = await axios.post("/auth/login", credentials);
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.access_token);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error as MyKnownError);
