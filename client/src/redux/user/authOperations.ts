@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IRegisterLoginUserData, IResponseUserData } from "../../types/types";
+import { IRegisterLoginUserData, IResponseUserData, IErrorData } from "../../types/types";
 
 axios.defaults.baseURL = "http://localhost:4000/api/";
 
@@ -12,15 +12,11 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
 };
 
-interface MyKnownError {
-
-}
-
 export const register = createAsyncThunk<
   IResponseUserData,
   IRegisterLoginUserData,
   {
-    rejectValue: MyKnownError;
+    rejectValue: IErrorData;
   }
 >("auth/register", async (credentials: IRegisterLoginUserData, thunkAPI) => {
   try {
@@ -28,7 +24,7 @@ export const register = createAsyncThunk<
     setAuthHeader(res.data.access_token);
     return res.data as IResponseUserData;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error as MyKnownError);
+    return thunkAPI.rejectWithValue(error as IErrorData);
   }
 });
 
@@ -40,7 +36,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.access_token);
       return res.data as IResponseUserData;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error as MyKnownError);
+      return thunkAPI.rejectWithValue(error as IErrorData);
     }
   }
 );
@@ -50,7 +46,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     await axios.post("/auth/logout");
     clearAuthHeader();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error as MyKnownError);
+    return thunkAPI.rejectWithValue(error as IErrorData);
   }
 });
 
@@ -69,7 +65,7 @@ export const refreshUser = createAsyncThunk(
       const res = await axios.get("/auth/profile");
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error as MyKnownError);
+      return thunkAPI.rejectWithValue(error as IErrorData);
     }
   }
 );

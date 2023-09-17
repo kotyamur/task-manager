@@ -13,3 +13,52 @@ export interface IErrorData {
   error: string;
   statusCode: number;
 }
+
+export interface IAddCategoryData {
+  name: string;
+}
+
+export interface IEditCategoryData {
+  category: string;
+  id: number;
+}
+
+export interface IResponseAddCategoryData {
+  name: string;
+  user: {
+    id: number;
+  };
+  id: number;
+  dateCreated: string;
+}
+
+export interface IResponseEditCategoryData {
+  id: number;
+  name: string;
+  dateCreated: string;
+}
+
+export interface IResponseOneCategoryData {
+    id: number;
+    name: string;
+    dateCreated: string;
+    tasks: [];
+}
+export interface IResponseOneTaskData {
+    id: number;
+    name: string;
+    dateStart: string;
+    dateEnd: string;
+}
+
+export interface IResponseCategoryByIdData {
+  id: number;
+  name: string;
+  dateCreated: string;
+  user: {};
+  tasks: [];
+}
+
+export interface IResponseDeleteCategoryData {
+  message: string;
+}

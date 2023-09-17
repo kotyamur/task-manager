@@ -34,7 +34,12 @@ const rejectedReducer = (
   action: PayloadAction<IErrorData>
 ) => {
   state.isLoading = false;
-  state.error = action.payload;
+  state.error =
+    {
+      message: action.payload?.message,
+      error: action.payload?.error,
+      statusCode: action.payload?.statusCode,
+    } || "An error occurred";
 };
 
 const authSlice = createSlice({
@@ -59,7 +64,12 @@ const authSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = false;
-        state.error = action.payload || "An error occurred";
+        state.error =
+          {
+            message: action.payload?.message,
+            error: action.payload?.error,
+            statusCode: action.payload?.statusCode,
+          } || "An error occurred";
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
