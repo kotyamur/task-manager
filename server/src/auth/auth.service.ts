@@ -26,8 +26,10 @@ export class AuthService {
 	async login(user: IUser) {
 		const { id, email } = user
 		return {
-			id,
-			email,
+			user: {
+				id,
+				email,
+			},
 			access_token: this.jwtService.sign({ id: user.id, email: user.email }),
 		}
 	}
@@ -35,8 +37,10 @@ export class AuthService {
 	async logout(user: IUser) {
 		const { id, email } = user
 		return {
-			id,
-			email,
+			user: {
+				id,
+				email,
+			},
 			access_token: '',
 		}
 	}

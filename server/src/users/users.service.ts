@@ -26,7 +26,13 @@ export class UsersService {
 		})
 
 		const access_token = this.jwtService.sign({ email: createUserDto.email })
-		return { user, access_token }
+		return {
+			user: {
+				id: user.id,
+				email: user.email,
+			},
+			access_token,
+		}
 	}
 
 	findAll() {

@@ -16,12 +16,18 @@ export class AuthController {
 	@UseGuards(JwtAuthGuard)
 	@Get('profile')
 	getProfile(@Request() req) {
-		return req.user
+		// return req.user
+		return {
+			user: {
+				id: req.user.id,
+				email: req.user.email,
+			},
+		}
 	}
 
 	@UseGuards(JwtAuthGuard)
 	@Post('logout')
 	async logout(@Request() req) {
-		return req.user
+		return this.authService.logout(req.user)
 	}
 }
