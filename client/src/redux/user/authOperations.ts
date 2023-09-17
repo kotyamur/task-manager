@@ -12,12 +12,6 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
 };
 
-
-// interface UserData {
-//   email: string;
-//   password: string;
-// }
-
 interface MyKnownError {
 
 }
@@ -44,7 +38,7 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post("/auth/login", credentials);
       setAuthHeader(res.data.access_token);
-      return res.data;
+      return res.data as IResponseUserData;
     } catch (error) {
       return thunkAPI.rejectWithValue(error as MyKnownError);
     }
