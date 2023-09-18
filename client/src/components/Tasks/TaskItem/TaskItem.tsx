@@ -1,4 +1,5 @@
 import * as React from "react";
+import {format} from "date-fns"
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import ListItem from "@mui/material/ListItem";
@@ -8,6 +9,7 @@ import Button from "@mui/material/Button";
 import TaskDeletePopup from "../TaskDeletePopup/TaskDeletePopup";
 import { styled } from "@mui/material/styles";
 import { taskItemStyles } from "./taskItemStyles";
+import { IOneTaskData } from "../../../types/types";
 
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
@@ -15,7 +17,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const TaskItem: React.FC<{ it: number }> = ({ it }) => {
+const TaskItem: React.FC<IOneTaskData> = ({ id, dateEnd, dateStart, name }) => {
   const [openDeletePopup, setOpenDeletePopup] = React.useState(false);
 
   const handleDeleteActionClick = () => {
@@ -30,13 +32,15 @@ const TaskItem: React.FC<{ it: number }> = ({ it }) => {
       setOpenDeletePopup(false);
     }
   };
+  const formeStartdDate = format(new Date(dateStart), "dd.MM.yyyy");
+  const formeEnddDate = format(new Date(dateEnd), "dd.MM.yyyy");
   return (
-    <Grid item xs={4} sm={4} md={4} key={it} component={ListItem}>
+    <Grid item xs={4} sm={4} md={4} component={ListItem}>
       <DemoPaper variant="outlined" sx={taskItemStyles.paper}>
         <Box sx={taskItemStyles.textWrapper}>
-          <Typography variant="h6">Fix phone input field</Typography>
-          <Typography variant="body1">start date 16.07.2023</Typography>
-          <Typography variant="body1">end date 22.07.2023</Typography>
+          <Typography variant="h6">{name}</Typography>
+          <Typography variant="body1">start date {formeStartdDate}</Typography>
+          <Typography variant="body1">end date {formeEnddDate}</Typography>
         </Box>
         <Box sx={taskItemStyles.buttonsWrapper}>
           <Button

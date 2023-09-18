@@ -2,13 +2,14 @@ import { FC, useEffect } from "react";
 import { useSearchParams, Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/hooks";
-import { fetchCategoryById } from "../../redux/categories/categoriesOperations";
 import { selectCategoryById } from "../../redux/categories/categoriesSelectors";
+import { fetchUserTasks } from "../../redux/task/tasksOperations";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TasksList from "./TasksList/TasksList";
+
 
 const Tasks: FC = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,7 @@ const Tasks: FC = () => {
 
   useEffect(() => {
     if (categoryIdParams) {
-      dispatch(fetchCategoryById(+categoryIdParams));
+      dispatch(fetchUserTasks(+categoryIdParams));
     }
   }, [categoryIdParams, dispatch]);
 

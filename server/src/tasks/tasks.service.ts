@@ -32,13 +32,14 @@ export class TasksService {
 		return await this.taskRepository.save(newTask)
 	}
 
-	async findAll(id: number) {
+	async findAll(id: number, categoryId: string) {
 		const tasks = await this.taskRepository.find({
 			where: {
 				user_id: { id },
+				category_id: { id: +categoryId },
 			},
 			order: {
-				dateEnd: 'ASC',
+				dateEnd: 'DESC',
 			},
 		})
 		return tasks

@@ -44,6 +44,10 @@ const Task: React.FC = () => {
     };
     console.log(newTask);
     await dispatch(addTask(newTask));
+    setName('');
+    setDescription('');
+    setStartDate(null);
+    setEndDate(null);
     navigate(backLink);
   };
 

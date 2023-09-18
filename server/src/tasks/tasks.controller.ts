@@ -10,6 +10,7 @@ import {
 	Req,
 	UsePipes,
 	ValidationPipe,
+	Query,
 } from '@nestjs/common'
 import { TasksService } from './tasks.service'
 import { CreateTaskDto } from './dto/create-task.dto'
@@ -29,8 +30,8 @@ export class TasksController {
 
 	@Get()
 	@UseGuards(JwtAuthGuard)
-	findAll(@Req() req) {
-		return this.tasksService.findAll(+req.user.id)
+	findAll(@Req() req, @Query('categoryId') categoryId) {
+		return this.tasksService.findAll(+req.user.id, categoryId)
 	}
 
 	@Get(':id')

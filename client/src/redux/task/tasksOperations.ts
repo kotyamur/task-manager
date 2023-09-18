@@ -25,9 +25,9 @@ export const addTask = createAsyncThunk(
 
 export const fetchUserTasks = createAsyncThunk(
   "tasks/fetchUsertasks",
-  async (_, thunkAPI) => {
+  async (id: number, thunkAPI) => {
     try {
-      const response = await axios.get("/tasks");
+      const response = await axios.get(`/tasks?categoryId=${id}`);
       return response.data as [];
     } catch (e) {
       return thunkAPI.rejectWithValue(e as IErrorData);

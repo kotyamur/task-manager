@@ -45,12 +45,12 @@ export interface IResponseOneCategoryData {
     tasks: [];
 }
 export interface IResponseOneTaskData {
-    id: number;
-    name: string;
-    dateStart: string;
-    dateEnd: string;
+  id: number;
+  name: string;
+  dateStart: string;
+  dateEnd: string;
+  description: string;
 }
-
 export interface IResponseCategoryByIdData {
   id: number;
   name: string;
@@ -69,6 +69,13 @@ export interface IAddTaskData {
   dateEnd: string;
   category_id: number;
   description: string;
+}
+
+export interface IOneTaskData {
+  id: number;
+  name: string;
+  dateStart: string;
+  dateEnd: string;
 }
 
 export interface IResponseTaskByIdData {
