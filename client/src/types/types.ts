@@ -62,3 +62,20 @@ export interface IResponseCategoryByIdData {
 export interface IResponseDeleteCategoryData {
   message: string;
 }
+
+export interface IAddTaskData {
+  
+}
+export interface IResponseTaskByIdData {
+  
+}
+export interface IEditTaskData {
+    id: number;
+    task: {}
+}
+export interface IResponseEditTaskData {
+  
+}
+export interface IResponseDeleteTaskData {
+  
+}

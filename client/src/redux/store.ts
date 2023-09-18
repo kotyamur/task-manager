@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { categoryReducer } from "./categories/categoriesSlice";
-// import { filterReducer } from "./contacts/filterSlice";
+import { TaskReducer } from "./task/tasksSlice";
 import { authReducer } from "./user/authSlice";
 import {
   persistReducer,
@@ -28,8 +28,8 @@ const persistConfig = {
 };
 
 const reducers = combineReducers({
-  category: categoryReducer,
-//   filter: filterReducer,
+  categories: categoryReducer,
+  tasks: TaskReducer,
   auth: persistReducer(persistConfig, authReducer),
 });
 
