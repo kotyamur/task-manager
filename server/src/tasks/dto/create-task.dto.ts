@@ -20,4 +20,8 @@ export class CreateTaskDto {
 
 	@IsOptional()
 	user_id: User
+
+	@IsOptional()
+	@IsString()
+	description: string
 }

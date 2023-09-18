@@ -38,7 +38,7 @@ const Tasks: FC = () => {
           component={Link}
           to={`/task`}
           // state={{ from: `${location.pathname}${location.search}` }}
-          state={{ from: location }}
+          state={{ from: location, categoryId: categoryIdParams }}
         >
           Add task
         </Button>

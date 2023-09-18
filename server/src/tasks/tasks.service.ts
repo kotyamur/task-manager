@@ -23,6 +23,7 @@ export class TasksService {
 			dateEnd: createTaskDto.dateEnd,
 			user_id: { id },
 			category_id: { id: +createTaskDto.category_id },
+			description: createTaskDto.description || '',
 		}
 
 		if (!newTask) {

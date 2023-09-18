@@ -64,8 +64,13 @@ export interface IResponseDeleteCategoryData {
 }
 
 export interface IAddTaskData {
-  
+  name: string;
+  dateStart: string;
+  dateEnd: string;
+  category_id: number;
+  description: string;
 }
+
 export interface IResponseTaskByIdData {
   
 }

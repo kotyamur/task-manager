@@ -4,7 +4,6 @@ import {
 	Entity,
 	Column,
 	PrimaryGeneratedColumn,
-	// OneToOne,
 	JoinColumn,
 	ManyToOne,
 } from 'typeorm'
@@ -23,10 +22,8 @@ export class Task {
 	@Column({ type: 'date' })
 	dateEnd: Date
 
-	// @OneToOne(() => Category, (category) => category.id, { onDelete: 'CASCADE' })
-	// @JoinColumn({ name: 'taskId' })
-	// // taskId: number
-	// category: Category
+	@Column({ type: 'varchar' })
+	description: string
 
 	@ManyToOne(() => User, (user) => user.tasks, {
 		onDelete: 'CASCADE',

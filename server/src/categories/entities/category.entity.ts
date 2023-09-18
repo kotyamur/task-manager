@@ -4,7 +4,6 @@ import {
 	Entity,
 	Column,
 	PrimaryGeneratedColumn,
-	//   OneToOne,
 	JoinColumn,
 	CreateDateColumn,
 	ManyToOne,
@@ -21,11 +20,6 @@ export class Category {
 
 	@CreateDateColumn()
 	dateCreated: Date
-
-	//   @OneToOne(() => User, (user) => user.id)
-	//   @JoinColumn({ name: 'userId' })
-	//   //   userId: number
-	//   owner: User
 
 	@ManyToOne(() => User, (user) => user.categories, {
 		eager: false,
