@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -17,6 +18,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 }));
 
 const TaskItem: React.FC<IOneTaskData> = ({ id, dateEnd, dateStart, name }) => {
+  const location = useLocation();
   const [openDeletePopup, setOpenDeletePopup] = React.useState(false);
 
   const handleDeleteActionClick = () => {
@@ -50,7 +52,13 @@ const TaskItem: React.FC<IOneTaskData> = ({ id, dateEnd, dateStart, name }) => {
             Delete
           </Button>
 
-          <Button size="small" variant="outlined">
+          <Button
+            size="small"
+            variant="outlined"
+            component={Link}
+            to={`/task?taskId=${id}`}
+            state={{ from: location }}
+          >
             Edit
           </Button>
         </Box>

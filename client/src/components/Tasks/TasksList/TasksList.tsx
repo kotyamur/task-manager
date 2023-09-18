@@ -9,7 +9,6 @@ import Typography from "@mui/material/Typography";
 
 const TasksList: FC = () => {
   const tasks = useSelector(selectTasks);
-  console.log(tasks)
   return (
     <>
       <Grid

@@ -20,7 +20,14 @@ export interface TaskState {
 
 const initialState: TaskState = {
   tasks: [],
-  taskById: {},
+  taskById: {
+    id: 0,
+    name: "",
+    dateStart: "",
+    dateEnd: "",
+    description: "",
+    dateCreated: "",
+  },
   isLoading: false,
   error: null,
   message: "",
@@ -43,11 +50,18 @@ const rejectedReducer = (
 };
 
 const TaskSlice = createSlice({
-  name: "Tasks",
+  name: "tasks",
   initialState,
   reducers: {
     clearTaskById: (state) => {
-      state.taskById = {};
+      state.taskById = {
+        id: 0,
+        name: "",
+        dateStart: "",
+        dateEnd: "",
+        description: "",
+        dateCreated: "",
+      };
     },
   },
   extraReducers: (builder) => {

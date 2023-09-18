@@ -55,7 +55,6 @@ export interface IResponseCategoryByIdData {
   id: number;
   name: string;
   dateCreated: string;
-//   user: {};
   tasks: [];
 }
 
@@ -79,11 +78,21 @@ export interface IOneTaskData {
 }
 
 export interface IResponseTaskByIdData {
-  
+  id: number;
+  name: string;
+  dateStart: string;
+  dateEnd: string;
+  description: string;
+  dateCreated: string;
 }
 export interface IEditTaskData {
-    id: number;
-    task: {}
+  task: {
+    name: string;
+    dateStart: string;
+    dateEnd: string;
+    description: string;
+  };
+  id: number;
 }
 export interface IResponseEditTaskData {
   

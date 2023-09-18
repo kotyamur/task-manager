@@ -15,7 +15,6 @@ const TaskDeletePopup: React.FC<{
   const dispatch = useAppDispatch();
 
   const handleDeleteBtnClick = async () => {
-    console.log(taskId);
     await dispatch(deleteTask(+taskId));
     dispatch(refreshUser());
   };

@@ -19,7 +19,6 @@ const Tasks: FC = () => {
   const categoryIdParams = searchParams.get("categoryId");
 
   const categoryById = useSelector(selectCategoryById);
-  console.log(categoryIdParams);
 
   useEffect(() => {
     if (categoryIdParams) {
@@ -38,7 +37,6 @@ const Tasks: FC = () => {
           sx={{ marginRight: 2 }}
           component={Link}
           to={`/task`}
-          // state={{ from: `${location.pathname}${location.search}` }}
           state={{ from: location, categoryId: categoryIdParams }}
         >
           Add task

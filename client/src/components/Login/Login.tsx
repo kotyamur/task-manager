@@ -24,7 +24,6 @@ const Login: React.FC = () => {
     values: IRegisterLoginUserData,
     { setSubmitting }: FormikHelpers<IRegisterLoginUserData>
   ) => {
-    console.log(values.email, values.password);
     await dispatch(logIn({ email: values.email, password: values.password }));
     setSubmitting(false);
   };
