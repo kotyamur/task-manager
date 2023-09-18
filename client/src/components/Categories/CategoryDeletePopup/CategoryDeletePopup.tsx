@@ -1,4 +1,10 @@
 import * as React from "react";
+import { useAppDispatch } from "../../../redux/hooks";
+import {
+  deleteCategory,
+  fetchUserCategories,
+} from "../../../redux/categories/categoriesOperations";
+
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -7,7 +13,15 @@ import Typography from "@mui/material/Typography";
 const CategoryDeletePopup: React.FC<{
   open: boolean;
   handleClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
-}> = ({ open, handleClose }) => {
+  id: number;
+}> = ({ open, handleClose, id }) => {
+  const dispatch = useAppDispatch();
+
+  const handleDeleteBtnClick = async () => {
+    console.log(id);
+    await dispatch(deleteCategory(id));
+    dispatch(fetchUserCategories());
+  };
   return (
     <Backdrop
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -35,7 +49,9 @@ const CategoryDeletePopup: React.FC<{
           <Button variant="outlined" onClick={handleClose}>
             no
           </Button>
-          <Button variant="contained">yes</Button>
+          <Button variant="contained" onClick={handleDeleteBtnClick}>
+            yes
+          </Button>
         </Box>
       </Box>
     </Backdrop>

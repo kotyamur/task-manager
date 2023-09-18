@@ -39,7 +39,11 @@ const CategoryItem: React.FC<IResponseOneCategoryData> = ({ id, dateCreated, nam
     <ListItem>
       <DemoPaper variant="outlined" sx={categoryItemStyles.paper}>
         <Box sx={categoryItemStyles.textWrapper}>
-          <Typography variant="h5" display="block" sx={{textTransform: "uppercase", minWidth: "140px"}}>
+          <Typography
+            variant="h5"
+            display="block"
+            sx={{ textTransform: "uppercase", minWidth: "140px" }}
+          >
             {name}
           </Typography>
           <Typography variant="h6">{tasks.length} tasks</Typography>
@@ -50,7 +54,7 @@ const CategoryItem: React.FC<IResponseOneCategoryData> = ({ id, dateCreated, nam
             actions
           </Button>
           <Button size="small">more </Button>
-          {isActionsShown && (
+          {isActionsShown && categoryId !== null && (
             <CategoryActions
               categoryId={categoryId}
               handleActionsClose={handleActionsClose}

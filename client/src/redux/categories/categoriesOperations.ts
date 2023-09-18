@@ -69,7 +69,7 @@ export const editCategory = createAsyncThunk(
 
 export const deleteCategory = createAsyncThunk(
   "categories/deleteCategory",
-  async (id, thunkAPI) => {
+  async (id: number, thunkAPI) => {
     try {
       const response = await axios.delete(`/categories/${id}`);
       return response.data as IResponseDeleteCategoryData;
