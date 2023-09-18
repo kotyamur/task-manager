@@ -45,7 +45,7 @@ export const fetchUserCategories = createAsyncThunk(
 
 export const fetchCategoryById = createAsyncThunk(
   "categories/fetchCategoryById",
-  async (id, thunkAPI) => {
+  async (id: number, thunkAPI) => {
     try {
       const response = await axios.get(`/categories/${id}`);
       return response.data as IResponseCategoryByIdData;
@@ -57,9 +57,9 @@ export const fetchCategoryById = createAsyncThunk(
 
 export const editCategory = createAsyncThunk(
   "categories/editCategory",
-  async (data: IEditCategoryData, thunkAPI) => {
+    async (data: IEditCategoryData, thunkAPI) => {
     try {
-      const response = await axios.post(`/categories/${data.id}`, data.category);
+      const response = await axios.patch(`/categories/${data.id}`, {name: data.name});
       return response.data as IResponseEditCategoryData;
     } catch (e) {
       return thunkAPI.rejectWithValue(e as IErrorData);

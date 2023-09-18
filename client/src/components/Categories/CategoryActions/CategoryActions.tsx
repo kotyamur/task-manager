@@ -12,7 +12,8 @@ import { categoryActionsStyles } from "./categoryActionsStyles";
 const CategoryActions: React.FC<{
   categoryId: number;
   handleActionsClose: () => void;
-}> = ({ handleActionsClose, categoryId }) => {
+  categoryName: string;
+}> = ({ handleActionsClose, categoryId, categoryName }) => {
   const [openDeletePopup, setOpenDeletePopup] = React.useState(false);
   const [openEditPopup, setOpenEditPopup] = React.useState(false);
   const handleEditActionClick = () => {
@@ -52,18 +53,21 @@ const CategoryActions: React.FC<{
           </ListItemButton>
         </ListItem>
       </List>
-      {openDeletePopup &&
-        categoryId !== null && (
-          <CategoryDeletePopup
-            open={openDeletePopup}
-            handleClose={handleCloseDeletePopup}
-            id={categoryId}
-          />
-        )}
-      {openEditPopup && (
+      {openDeletePopup && categoryId !== null && (
+        <CategoryDeletePopup
+          open={openDeletePopup}
+          handleClose={handleCloseDeletePopup}
+          id={categoryId}
+        />
+      )}
+      {openEditPopup && categoryId !== null && (
         <CategoryEditPopup
           open={openEditPopup}
           handleClose={handleCloseEditPopup}
+          id={categoryId}
+          categoryName={categoryName}
+          setOpenEditPopup={setOpenEditPopup}
+          handleActionsClose={handleActionsClose}
         />
       )}
     </Box>

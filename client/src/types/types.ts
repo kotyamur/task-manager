@@ -19,7 +19,7 @@ export interface IAddCategoryData {
 }
 
 export interface IEditCategoryData {
-  category: string;
+  name: string;
   id: number;
 }
 
@@ -55,7 +55,7 @@ export interface IResponseCategoryByIdData {
   id: number;
   name: string;
   dateCreated: string;
-  user: {};
+//   user: {};
   tasks: [];
 }
 

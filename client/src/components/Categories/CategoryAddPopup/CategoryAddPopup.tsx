@@ -29,7 +29,6 @@ const CategoryAddPopup: React.FC<{
       values: IAddCategoryData,
       { setSubmitting }: FormikHelpers<IAddCategoryData>
     ) => {
-      console.log(values.name);
       await dispatch(addCategory({ name: values.name }));
       setSubmitting(false);
       setOpenAddPopup(false);

@@ -18,7 +18,6 @@ const CategoryDeletePopup: React.FC<{
   const dispatch = useAppDispatch();
 
   const handleDeleteBtnClick = async () => {
-    console.log(id);
     await dispatch(deleteCategory(id));
     dispatch(fetchUserCategories());
   };

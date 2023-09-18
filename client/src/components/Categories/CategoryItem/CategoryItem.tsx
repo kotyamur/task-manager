@@ -58,6 +58,7 @@ const CategoryItem: React.FC<IResponseOneCategoryData> = ({ id, dateCreated, nam
             <CategoryActions
               categoryId={categoryId}
               handleActionsClose={handleActionsClose}
+              categoryName={name}
             />
           )}
         </Box>

@@ -51,7 +51,7 @@ export class CategoriesService {
 		const category = await this.categoryRepository.findOne({
 			where: { id },
 			relations: {
-				user: true,
+				// user: true,
 				tasks: true,
 			},
 		})
@@ -65,6 +65,7 @@ export class CategoriesService {
 		const category = await this.categoryRepository.findOne({
 			where: { id },
 		})
+		console.log(category)
 		if (!category) {
 			throw new NotFoundException('Category not found!')
 		}

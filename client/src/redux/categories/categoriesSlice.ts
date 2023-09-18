@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IErrorData } from "../../types/types";
+import { IErrorData, IResponseCategoryByIdData } from "../../types/types";
 import { addCategory, deleteCategory, editCategory, fetchCategoryById, fetchUserCategories } from "./categoriesOperations";
 import { logOut } from "../user/authOperations";
 
 export interface CategoryState {
   categories: [];
-  categoryById: {};
+  categoryById: IResponseCategoryByIdData;
   isLoading: boolean;
   error: {} | null;
   message: string;
@@ -14,10 +14,15 @@ export interface CategoryState {
 
 const initialState: CategoryState = {
   categories: [],
-  categoryById: {},
+  categoryById: {
+    id: 0,
+    name: "",
+    dateCreated: "",
+    tasks: [],
+  },
   isLoading: false,
   error: null,
-  message: '',
+  message: "",
 };
 
 const pendingReducer = (state: CategoryState) => {
@@ -39,15 +44,21 @@ const rejectedReducer = (
 const categorySlice = createSlice({
   name: "categories",
   initialState,
-
   reducers: {
-    // fill in primary logic here
+    clearCategoryById: (state) => {
+      state.categoryById = {
+        id: 0,
+        name: "",
+        dateCreated: "",
+        tasks: [],
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(addCategory.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.categoryById = action.payload;
+        state.message = "Category added successfully";
       })
       .addCase(fetchUserCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
@@ -59,7 +70,7 @@ const categorySlice = createSlice({
       })
       .addCase(editCategory.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.categoryById = action.payload;
+        state.message = "Category edited successfully";
       })
       .addCase(deleteCategory.fulfilled, (state, action) => {
         state.message = action.payload.message;
@@ -78,4 +89,5 @@ const categorySlice = createSlice({
   },
 });
 
+export const { clearCategoryById } = categorySlice.actions;
 export const categoryReducer = categorySlice.reducer;

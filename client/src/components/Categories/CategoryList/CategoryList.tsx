@@ -16,7 +16,6 @@ const CategoryList: FC = () => {
     dispatch(fetchUserCategories());
   }, [dispatch]);
 
-console.log(categories)
   return (
     <List>
       {categories.map(({ id, dateCreated, name, tasks }) => {
