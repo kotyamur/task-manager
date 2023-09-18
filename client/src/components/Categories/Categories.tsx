@@ -30,6 +30,7 @@ const Categories: FC = () => {
           <CategoryAddPopup
             open={openAddPopup}
             handleClose={handleCloseAddPopup}
+            setOpenAddPopup={setOpenAddPopup}
           />
         )}
       </Box>
