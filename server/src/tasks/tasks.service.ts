@@ -39,7 +39,7 @@ export class TasksService {
 				category_id: { id: +categoryId },
 			},
 			order: {
-				dateEnd: 'DESC',
+				dateCreated: 'DESC',
 			},
 		})
 		return tasks

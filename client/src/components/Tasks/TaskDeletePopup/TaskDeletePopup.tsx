@@ -3,11 +3,22 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useAppDispatch } from "../../../redux/hooks";
+import { deleteTask } from "../../../redux/task/tasksOperations";
+import { refreshUser } from "../../../redux/user/authOperations";
 
 const TaskDeletePopup: React.FC<{
   open: boolean;
   handleClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
-}> = ({ open, handleClose }) => {
+  taskId: number;
+}> = ({ open, handleClose, taskId }) => {
+  const dispatch = useAppDispatch();
+
+  const handleDeleteBtnClick = async () => {
+    console.log(taskId);
+    await dispatch(deleteTask(+taskId));
+    dispatch(refreshUser());
+  };
   return (
     <Backdrop
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -35,7 +46,9 @@ const TaskDeletePopup: React.FC<{
           <Button variant="outlined" onClick={handleClose}>
             no
           </Button>
-          <Button variant="contained">yes</Button>
+          <Button variant="contained" onClick={handleDeleteBtnClick}>
+            yes
+          </Button>
         </Box>
       </Box>
     </Backdrop>

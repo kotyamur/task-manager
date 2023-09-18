@@ -6,6 +6,7 @@ import {
 	PrimaryGeneratedColumn,
 	JoinColumn,
 	ManyToOne,
+	CreateDateColumn,
 } from 'typeorm'
 
 @Entity()
@@ -37,4 +38,7 @@ export class Task {
 	})
 	@JoinColumn({ name: 'taskId' })
 	category_id: Category
+
+	@CreateDateColumn()
+	dateCreated: Date
 }

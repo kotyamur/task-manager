@@ -1,5 +1,5 @@
 import * as React from "react";
-import {format} from "date-fns"
+import { format } from "date-fns";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import ListItem from "@mui/material/ListItem";
@@ -10,7 +10,6 @@ import TaskDeletePopup from "../TaskDeletePopup/TaskDeletePopup";
 import { styled } from "@mui/material/styles";
 import { taskItemStyles } from "./taskItemStyles";
 import { IOneTaskData } from "../../../types/types";
-
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -60,6 +59,7 @@ const TaskItem: React.FC<IOneTaskData> = ({ id, dateEnd, dateStart, name }) => {
         <TaskDeletePopup
           open={openDeletePopup}
           handleClose={handleCloseDeletePopup}
+          taskId={id}
         />
       )}
     </Grid>
