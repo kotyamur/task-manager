@@ -1,14 +1,17 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import Paper from "@mui/material/Paper";
 import ListItem from "@mui/material/ListItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import { categoryItemStyles } from "./categoryItemStyles";
+
 import CategoryActions from "../CategoryActions/CategoryActions";
 import { IResponseOneCategoryData } from "../../../types/types";
+
+import { styled } from "@mui/material/styles";
+import { categoryItemStyles } from "./categoryItemStyles";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -53,7 +56,9 @@ const CategoryItem: React.FC<IResponseOneCategoryData> = ({ id, dateCreated, nam
           <Button size="small" onClick={() => handleActionsClick(id)}>
             actions
           </Button>
-          <Button size="small">more </Button>
+          <Button size="small" component={Link} to={`/tasks?categoryId=${id}`}>
+            more{" "}
+          </Button>
           {isActionsShown && categoryId !== null && (
             <CategoryActions
               categoryId={categoryId}

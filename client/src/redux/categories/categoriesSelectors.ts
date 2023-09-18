@@ -5,3 +5,6 @@ export const selectCategories = (state: RootState) => state.categories.categorie
 export const selectCategoryById = (state: RootState) => state.categories.categoryById;
 export const selectIsLoading = (state: RootState) => state.categories.isLoading;
 export const selectError = (state: RootState) => state.categories.error;
+
+export const selectCategoryTasksById = (state: RootState) =>
+  state.categories.categoryById.tasks;
