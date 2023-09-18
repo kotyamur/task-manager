@@ -41,6 +41,9 @@ export class CategoriesService {
 			relations: {
 				tasks: true,
 			},
+			order: {
+				dateCreated: 'DESC',
+			},
 		})
 	}
 

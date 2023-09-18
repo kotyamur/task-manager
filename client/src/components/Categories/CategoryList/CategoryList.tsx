@@ -1,12 +1,26 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
+
+import { useSelector } from "react-redux";
+import { selectCategories } from "../../../redux/categories/categoriesSelectors";
+import { fetchUserCategories } from "../../../redux/categories/categoriesOperations";
+import { useAppDispatch } from "../../../redux/hooks";
+
 import List from "@mui/material/List";
 import CategoryItem from "../CategoryItem/CategoryItem";
 
 const CategoryList: FC = () => {
+  const dispatch = useAppDispatch();
+  const categories = useSelector(selectCategories);
+
+  useEffect(() => {
+    dispatch(fetchUserCategories());
+  }, [dispatch]);
+
+console.log(categories)
   return (
     <List>
-      {[0, 1, 2, 3, 4].map((it) => {
-        return <CategoryItem key={it} it={it} />;
+      {categories.map(({ id, dateCreated, name, tasks }) => {
+        return <CategoryItem key={id} id={id} dateCreated={dateCreated} name={name} tasks={tasks} />;
       })}
     </List>
   );

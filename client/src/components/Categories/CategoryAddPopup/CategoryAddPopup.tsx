@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField";
 
 import { addCategorySchema } from "../../../helpers/validation";
 import { IAddCategoryData } from "../../../types/types";
-import { addCategory } from "../../../redux/categories/categoriesOperations";
+import { addCategory, fetchUserCategories } from "../../../redux/categories/categoriesOperations";
 
 const initialCategoryValues: IAddCategoryData = {
   name: "",
@@ -33,6 +33,7 @@ const CategoryAddPopup: React.FC<{
       await dispatch(addCategory({ name: values.name }));
       setSubmitting(false);
       setOpenAddPopup(false);
+      dispatch(fetchUserCategories());
     };
 
     const formik = useFormik({
