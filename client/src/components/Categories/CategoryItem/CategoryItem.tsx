@@ -57,7 +57,7 @@ const CategoryItem: React.FC<IResponseOneCategoryData> = ({ id, dateCreated, nam
             actions
           </Button>
           <Button size="small" component={Link} to={`/tasks?categoryId=${id}`}>
-            more{" "}
+            more
           </Button>
           {isActionsShown && categoryId !== null && (
             <CategoryActions

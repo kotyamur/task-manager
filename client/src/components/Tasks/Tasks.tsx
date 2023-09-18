@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/hooks";
 import { fetchCategoryById } from "../../redux/categories/categoriesOperations";
@@ -12,10 +12,14 @@ import TasksList from "./TasksList/TasksList";
 
 const Tasks: FC = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
+
   const [searchParams] = useSearchParams();
   const categoryIdParams = searchParams.get("categoryId");
+
   const categoryById = useSelector(selectCategoryById);
   console.log(categoryIdParams);
+
   useEffect(() => {
     if (categoryIdParams) {
       dispatch(fetchCategoryById(+categoryIdParams));
@@ -28,7 +32,14 @@ const Tasks: FC = () => {
         <Typography variant="h5" sx={{ textTransform: "uppercase" }}>
           {categoryById.name}
         </Typography>
-        <Button variant="contained" sx={{ marginRight: 2 }}>
+        <Button
+          variant="contained"
+          sx={{ marginRight: 2 }}
+          component={Link}
+          to={`/task`}
+          // state={{ from: `${location.pathname}${location.search}` }}
+          state={{ from: location }}
+        >
           Add task
         </Button>
       </Box>

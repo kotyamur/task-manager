@@ -1,48 +1,38 @@
 import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { formatISO } from "date-fns";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-// import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { taskStyles } from "./taskStyles";
 
 const Task: React.FC = () => {
+  const location = useLocation();
+
   const [name, setName] = React.useState("");
-    const [description, setDescription] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [startDate, setStartDate] = React.useState<dateFns | null>(null);
   const [endDate, setEndDate] = React.useState<dateFns | null>(null);
   console.log(startDate, endDate);
     if (startDate instanceof Date) {
       console.log(formatISO(startDate));
-    };
+  };
+  
+  
+  console.log(location.state.from);
+  const backLink = location.state.from ?? "/categories";
 
   return (
-    <Box
-      sx={{
-        width: "auto",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Box
-        component="form"
-        sx={{
-          padding: 4,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "35ch",
-        }}
-        noValidate
-        autoComplete="off"
-      >
+    <Box sx={taskStyles.formWrapper}>
+      <Box component="form" sx={taskStyles.form} noValidate autoComplete="off">
         <TextField
-          sx={{ width: "35ch", mb: 1 }}
+          fullWidth
+          // sx={{  mb: 1 }}
           label="Name:"
           value={name}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +40,8 @@ const Task: React.FC = () => {
           }}
         />
         <TextField
-          sx={{ width: "35ch" }}
+          fullWidth
+          // sx={{ width: "35ch" }}
           id="outlined-multiline-static"
           label="Description"
           multiline
@@ -60,15 +51,7 @@ const Task: React.FC = () => {
             setDescription(event.target.value);
           }}
         />
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            mt: 3,
-          }}
-        >
+        <Box sx={taskStyles.date}>
           <Typography variant="body1" sx={{ width: "80px" }}>
             start date
           </Typography>
@@ -82,15 +65,7 @@ const Task: React.FC = () => {
             />
           </LocalizationProvider>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            mt: 3,
-          }}
-        >
+        <Box sx={taskStyles.date}>
           <Typography variant="body1" sx={{ width: "80px" }}>
             end date
           </Typography>
@@ -107,7 +82,9 @@ const Task: React.FC = () => {
         </Box>
 
         <Box sx={{ display: "flex", gap: 13, mt: 3 }}>
-          <Button variant="outlined">cancel</Button>
+          <Button variant="outlined" component={Link} to={backLink}>
+            cancel
+          </Button>
           <Button variant="contained">save</Button>
         </Box>
       </Box>

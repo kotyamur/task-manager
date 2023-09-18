@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TaskDeletePopup from "../TaskDeletePopup/TaskDeletePopup";
 import { styled } from "@mui/material/styles";
-import { taskItemStyles } from "./taskStyles";
+import { taskItemStyles } from "./taskItemStyles";
 
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
