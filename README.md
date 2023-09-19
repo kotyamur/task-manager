@@ -1,8 +1,8 @@
 # task-manager
 It is small fullstack app on typescript.
 
-When user visit our site response redirect to login. ![login page](https://prnt.sc/nlL2HE-XJ054)
-After registration or login redirect to task manager. ![category page](https://prnt.sc/Hvxd-INpnsx7)
+When user visit our site response redirect to login. [login page](https://prnt.sc/nlL2HE-XJ054)
+After registration or login redirect to task manager. [category page](https://prnt.sc/Hvxd-INpnsx7)
 User can create category for tasks by click "add category" button. ![add category](https://prnt.sc/DhXOCe659Ofx)
 By click "more" button user redirected to category list of tasks. ![list of tasks](https://prnt.sc/NgHqwWOoLGWx)
 By click "actions" button user can delete category  or edit category name. ![actions](https://prnt.sc/01UoD9jpFtXI)
