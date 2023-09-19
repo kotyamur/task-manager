@@ -2,6 +2,10 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { useFormik, FormikHelpers } from "formik";
 
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/user/authSelectors";
+
 import { useAppDispatch } from "../../redux/hooks";
 import { logIn } from "../../redux/user/authOperations";
 import Box from "@mui/material/Box";
@@ -19,6 +23,9 @@ const initialLoginValues: IRegisterLoginUserData = {
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const isUserLogined = useSelector(selectIsLoggedIn);
   
   const handleSubmit = async (
     values: IRegisterLoginUserData,
@@ -33,6 +40,12 @@ const Login: React.FC = () => {
     validationSchema: registerLoginSchema,
     onSubmit: handleSubmit,
   });
+
+  React.useEffect(() => {
+    if (isUserLogined) {
+      navigate("/categories");
+    }
+  }, [isUserLogined, navigate]);
 
   return (
     <Box

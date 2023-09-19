@@ -6,6 +6,7 @@ import { fetchUserCategories } from "../../../redux/categories/categoriesOperati
 import { useAppDispatch } from "../../../redux/hooks";
 
 import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
 import CategoryItem from "../CategoryItem/CategoryItem";
 
 const CategoryList: FC = () => {
@@ -17,11 +18,30 @@ const CategoryList: FC = () => {
   }, [dispatch]);
 
   return (
-    <List>
-      {categories.map(({ id, dateCreated, name, tasks }) => {
-        return <CategoryItem key={id} id={id} dateCreated={dateCreated} name={name} tasks={tasks} />;
-      })}
-    </List>
+    <>
+      <List>
+        {categories.map(({ id, dateCreated, name, tasks }) => {
+          return (
+            <CategoryItem
+              key={id}
+              id={id}
+              dateCreated={dateCreated}
+              name={name}
+              tasks={tasks}
+            />
+          );
+        })}
+      </List>
+      {categories.length === 0 && (
+        <Typography
+          variant="h6"
+          mt={4}
+          sx={{ color: "primary.dark", textAlign: "center" }}
+        >
+          Add your first category
+        </Typography>
+      )}
+    </>
   );
 };
 

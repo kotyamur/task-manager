@@ -28,10 +28,19 @@ const Tasks: FC = () => {
 
   return (
     <Box sx={{ p: 2 }}>
+      <Button
+        variant="text"
+        sx={{ marginRight: 2 }}
+        component={Link}
+        to={`/categories`}
+      >
+        go back
+      </Button>
       <Box sx={{ p: 2, display: "flex", justifyContent: "space-between" }}>
         <Typography variant="h5" sx={{ textTransform: "uppercase" }}>
           {categoryById.name}
         </Typography>
+
         <Button
           variant="contained"
           sx={{ marginRight: 2 }}
