@@ -24,7 +24,6 @@ const CategoryActions: React.FC<{
   };
   const handleCloseEditPopup = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (event.target === event.currentTarget) {
-      //   event.stopPropagation();
       setOpenEditPopup(false);
       handleActionsClose();
     }
@@ -33,7 +32,6 @@ const CategoryActions: React.FC<{
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     if (event.target === event.currentTarget) {
-      //   event.stopPropagation();
       setOpenDeletePopup(false);
       handleActionsClose();
     }

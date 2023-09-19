@@ -4,21 +4,6 @@ import { IErrorData, IAddCategoryData, IEditCategoryData, IResponseCategoryByIdD
 
 axios.defaults.baseURL = "http://localhost:4000/api/";
 
-// export const register = createAsyncThunk<
-//   IResponseUserData,
-//   IRegisterLoginUserData,
-//   {
-//     rejectValue: MyKnownError;
-//   }
-// >("auth/register", async (credentials: IRegisterLoginUserData, thunkAPI) => {
-//   try {
-//     const res = await axios.post<IResponseUserData>("/users", credentials);
-//     return res.data as IResponseUserData;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error as MyKnownError);
-//   }
-// });
-
 export const addCategory = createAsyncThunk(
   "categories/addCategory",
   async (category: IAddCategoryData, thunkAPI) => {

@@ -98,5 +98,5 @@ export interface IResponseEditTaskData {
   
 }
 export interface IResponseDeleteTaskData {
-  
+  message: string;
 }

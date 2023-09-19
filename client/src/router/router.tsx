@@ -1,8 +1,6 @@
 import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from "../components/SharedLayout";
-// import { RestrictedRoute } from "../components/RestrictedRoute";
-// import { PrivateRoute } from "../components/PrivateRoute";
 
 const Home = lazy(() => import("../pages/HomePage"));
 const Register = lazy(() => import("../pages/RegisterPage"));
@@ -23,11 +21,6 @@ const AppRouter: React.FC = () => {
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task" element={<Task />} />
         
-        {/* <Route path="/register" element={<RestrictedRoute redirectTo="/categories" component={<Register />} />} />
-        <Route path="/login" element={<RestrictedRoute redirectTo="/categories" component={<Login />} />} />
-        <Route path="/categories" element={<PrivateRoute redirectTo="/login" component={<Categories />} />} />
-        <Route path="/tasks" element={<PrivateRoute redirectTo="/login" component={<Tasks />} />} />
-        <Route path="/task" element={<PrivateRoute redirectTo="/login" component={<Task />} />} /> */}
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

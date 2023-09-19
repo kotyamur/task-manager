@@ -39,7 +39,7 @@ export const SharedLayout: FC = () => {
             >
               Task manager
             </Typography>
-            <Box sx={{ flexGrow: 1, display: "flex" }}>
+            <Box sx={{ display: "flex" }}>
               {!isUserLogined && (
                 <Button color="inherit" component={Link} to="/">
                   Login/Signup

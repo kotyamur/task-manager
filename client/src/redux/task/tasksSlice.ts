@@ -83,7 +83,7 @@ const TaskSlice = createSlice({
         state.message = "Task edited successfully";
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        // state.message = action.payload.message;
+        state.message = action.payload.message;
         state.isLoading = false;
       })
       .addCase(logOut.fulfilled, (state) => {

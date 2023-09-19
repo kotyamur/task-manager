@@ -47,7 +47,6 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(register.pending, (state) => {
-        // state.isLoading = true;
         state.isLoggedIn = false;
       })
       .addCase(register.fulfilled, (state, action) => {
@@ -57,14 +56,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
-        // state.isLoading = false;
         state.isLoggedIn = false;
-        // state.error =
-        //   {
-        //     message: action.payload?.message,
-        //     error: action.payload?.error,
-        //     statusCode: action.payload?.statusCode,
-        //   } || "An error occurred";
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -79,9 +71,7 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(refreshUser.pending, (state) => {
-        // state.isLoading = true;
         state.isRefreshing = true;
-        // state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -90,7 +80,6 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        // state.isLoading = false;
         state.isRefreshing = false;
         state.error = action.payload || "An error occurred";
       })

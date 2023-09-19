@@ -14,13 +14,6 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-// const middleware = (getDefaultMiddleware) =>
-//   getDefaultMiddleware({
-//     serializableCheck: {
-//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//     },
-//   });
-
 const persistConfig = {
   key: "auth",
   storage: storage,
@@ -35,7 +28,6 @@ const reducers = combineReducers({
 
 export const store = configureStore({
   reducer: reducers,
-//   middleware,
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -49,5 +41,3 @@ export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-
