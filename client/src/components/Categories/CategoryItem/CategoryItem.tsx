@@ -24,11 +24,8 @@ const CategoryItem: React.FC<IResponseOneCategoryData> = ({ id, dateCreated, nam
   const [categoryId, setCategoryId] = React.useState<number | null>(null);
 
   const handleActionsClick = (
-    //   event: React.MouseEvent<HTMLButtonElement>,
     id: number
   ) => {
-    // Зупиняємо спливання події до батьківського компонента
-    //   event.stopPropagation();
     setIsActionsShown(true);
     setCategoryId(id);
   };
