@@ -1,4 +1,5 @@
 import * as React from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import Paper from "@mui/material/Paper";
@@ -37,20 +38,22 @@ const CategoryItem: React.FC<IResponseOneCategoryData> = ({ id, dateCreated, nam
   };
 
   const formedDate = format(new Date(dateCreated), "dd.MM.yyyy");
-  
+
+  const matches = useMediaQuery("(min-width:420px)");
+
   return (
     <ListItem>
       <DemoPaper variant="outlined" sx={categoryItemStyles.paper}>
         <Box sx={categoryItemStyles.textWrapper}>
           <Typography
-            variant="h5"
+            variant="h6"
             display="block"
-            sx={{ textTransform: "uppercase", minWidth: "140px" }}
+            sx={{ textTransform: "uppercase", minWidth: "120px" }}
           >
             {name}
           </Typography>
           <Typography variant="h6">{tasks.length} tasks</Typography>
-          <Typography variant="h6">{formedDate}</Typography>
+          {matches && <Typography variant="h6">{formedDate}</Typography>}
         </Box>
         <Box sx={categoryItemStyles.buttonsWrapper}>
           <Button size="small" onClick={() => handleActionsClick(id)}>

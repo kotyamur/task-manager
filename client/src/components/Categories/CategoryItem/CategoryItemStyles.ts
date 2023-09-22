@@ -4,8 +4,11 @@ export const categoryItemStyles = {
     alignItems: "center",
     justifyContent: "space-between",
     width: "50%",
+    "@media (max-width:767px)": {
+      width: "100%",
+    },
   },
-    buttonsWrapper: {
+  buttonsWrapper: {
     display: "flex",
     alignItems: "center",
     gap: 3,
@@ -19,5 +22,11 @@ export const categoryItemStyles = {
     justifyContent: "space-between",
     padding: "0 20px",
     gap: 4,
+    "@media (max-width:767px)": {
+      flexDirection: "column",
+      height: 80,
+      padding: "16px",
+      gap: 1,
+    },
   },
 };
